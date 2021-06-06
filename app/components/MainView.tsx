@@ -3,7 +3,6 @@ import { CssBaseline } from '@material-ui/core';
 import { useRecoilValue } from 'recoil';
 
 import TopBar from './TopBar/TopBar';
-import LoadingBar from './LoadingBar';
 import { tabList } from './TopBar/AppTabs';
 import { selectedTabState } from '../store';
 import LoadingSuspense from './LoadingSuspense';
@@ -24,7 +23,6 @@ const MainView = () => {
     <CssBaseline>
       <div className="styles.wrapper">
         <TopBar />
-        <LoadingBar />
         {tabList.map(
           (tab) =>
             tabList[selectedTab].name === tab.name && (
