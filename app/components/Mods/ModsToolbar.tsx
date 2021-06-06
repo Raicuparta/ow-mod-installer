@@ -16,7 +16,7 @@ const ModsToolbar: React.FunctionComponent = () => {
       <Toolbar
         sx={{
           justifyContent: 'space-between',
-          my: 2,
+          mb: 2,
         }}
       >
         <FilterInput

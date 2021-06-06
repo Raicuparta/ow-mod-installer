@@ -124,7 +124,6 @@ const OwmlLog: React.FunctionComponent = () => {
           flex: 1,
           overflowY: 'auto',
           background: 'grey.900',
-          mt: 3,
         }}
       >
         <Table size="small" stickyHeader>
