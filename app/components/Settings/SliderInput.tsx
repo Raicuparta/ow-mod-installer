@@ -54,7 +54,6 @@ const SliderInput: FunctionComponent<Props> = ({
             flex: 1,
           }}
           disabled={disabled}
-          className="styles.slider"
           value={displayValue}
           onChangeCommitted={handleChangeCommitted}
           onChange={handleChange}

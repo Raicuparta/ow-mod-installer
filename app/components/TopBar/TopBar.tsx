@@ -8,6 +8,7 @@ import LoadingSuspense from '../LoadingSuspense';
 const TopBar: React.FunctionComponent = () => (
   <Box
     sx={{
+      // TODO toolbar scroll
       // overflowY: 'scroll',
       '&::-webkit-scrollbar-track': {
         background: 'grey.900',
@@ -21,7 +22,6 @@ const TopBar: React.FunctionComponent = () => (
         padding: 0,
         backgroundColor: 'grey.900',
       }}
-      className="styles.toolbar"
     >
       <Container
         sx={{
@@ -31,7 +31,6 @@ const TopBar: React.FunctionComponent = () => (
           alignItems: 'center',
         }}
         maxWidth="md"
-        className="styles.container"
       >
         <AppTabs />
         <LoadingSuspense>

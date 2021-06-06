@@ -6,15 +6,6 @@ import { logsText } from '../../helpers/static-text';
 import { LogLine } from '../../types';
 import { debugConsole } from '../../helpers/console-log';
 
-// const useStyles = makeStyles({
-//   root: {
-//     maxWidth: 150,
-//     overflowX: 'hidden',
-//     textOverflow: 'ellipsis',
-//     whiteSpace: 'nowrap',
-//   },
-// });
-
 type Props = {
   value: string;
   onChange: (value: string) => void;
@@ -26,7 +17,6 @@ const ModNameSelect: React.FunctionComponent<Props> = ({
   onChange,
   logLines,
 }) => {
-  // const styles = useStyles();
   const [modNames, setModNames] = useState<string[]>([]);
 
   useEffect(() => {
@@ -46,11 +36,16 @@ const ModNameSelect: React.FunctionComponent<Props> = ({
   return (
     <Select
       variant="outlined"
-      margin="dense"
-      className={"styles.root"}
+      size="small"
       value={value}
       onChange={handleModNameChange}
       displayEmpty
+      sx={{
+        maxWidth: 150,
+        overflowX: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      }}
     >
       <MenuItem value={''}>{logsText.allMods}</MenuItem>
       {modNames.map((modName) => (
