@@ -58,6 +58,10 @@ const TextInput: FunctionComponent<Props> = ({
           onChange={handleChange}
           color="secondary"
           disabled={disabled}
+          sx={{
+            mx: 2,
+            flex: 1,
+          }}
         />
       </Tooltip>
       {value !== text && (
