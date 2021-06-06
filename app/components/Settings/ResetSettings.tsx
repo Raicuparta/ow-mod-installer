@@ -8,14 +8,7 @@ import { useSettings } from '../../hooks';
 import { defaultAppSettings } from '../../services';
 import { defaultOwmlSettingsState } from '../../store';
 
-// const useStyles = makeStyles({
-//   root: {
-//     justifyContent: 'flex-end',
-//   },
-// });
-
 const ResetSettings = () => {
-  // const styles = useStyles();
   const { setSettings, setOwmlSettings } = useSettings();
   const defaultOwmlSettings = useRecoilValue(defaultOwmlSettingsState);
 
@@ -25,7 +18,11 @@ const ResetSettings = () => {
   }, [setSettings, setOwmlSettings, defaultOwmlSettings]);
 
   return (
-    <ListItem className="styles.root">
+    <ListItem
+      sx={{
+        justifyContent: 'flex-end',
+      }}
+    >
       <Button
         variant="contained"
         onClick={handleResetClick}
