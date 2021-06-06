@@ -33,13 +33,13 @@ const SliderInput: FunctionComponent<Props> = ({
   const [displayValue, setDisplayValue] = useState(value);
   // const styles = useStyles();
   const handleChangeCommitted = useCallback(
-    (_: React.ChangeEvent<unknown>, changeValue: number | number[]) =>
+    (_: unknown, changeValue: number | number[]) =>
       onChange(typeof changeValue === 'number' ? changeValue : changeValue[0]),
     [onChange]
   );
 
   const handleChange = useCallback(
-    (_: React.ChangeEvent<unknown>, changeValue: number | number[]) =>
+    (_: unknown, changeValue: number | number[]) =>
       setDisplayValue(
         typeof changeValue === 'number' ? changeValue : changeValue[0]
       ),
@@ -55,11 +55,9 @@ const SliderInput: FunctionComponent<Props> = ({
     <ListItem>
       <Typography>{label}</Typography>
       <Tooltip title={tooltip} placement="bottom">
-        {/* TODO: material slider */}
-        <></>
-        {/* <Slider
+        <Slider
           disabled={disabled}
-          className={styles.slider}
+          className="styles.slider"
           value={displayValue}
           onChangeCommitted={handleChangeCommitted}
           onChange={handleChange}
@@ -75,7 +73,7 @@ const SliderInput: FunctionComponent<Props> = ({
             { value: 150, label: '150' },
             { value: 200, label: '200' },
           ]}
-        /> */}
+        />
       </Tooltip>
     </ListItem>
   );

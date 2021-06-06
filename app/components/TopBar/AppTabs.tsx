@@ -55,17 +55,16 @@ const AppTabs = () => {
 
   return (
     <Tabs value={selectedTab}>
-      {/* TODO: Material Tab */}
-      {/* {tabList.map((tab: Tab, index: number) => (
+      {tabList.map((tab: Tab, index: number) => (
         <Tab
           key={tab.name}
           label={tab.name}
           value={index}
-          classes="tabStyles"
+          // classes="tabStyles"
           icon={<tab.icon color={tab.color} />}
           onClick={() => setSelectedTab(index)}
         />
-      ))} */}
+      ))}
     </Tabs>
   );
 };
