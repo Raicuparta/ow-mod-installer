@@ -135,6 +135,7 @@ const OwmlLog: React.FunctionComponent = () => {
           flex: 1,
           overflowY: 'auto',
           background: 'grey.900',
+          mt: 3,
         }}
       >
         <Table size="small" stickyHeader>
@@ -144,6 +145,7 @@ const OwmlLog: React.FunctionComponent = () => {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
+                backgroundColor: 'transparent',
               }}>
                 <FilterInput
                   onChange={setFilter}
@@ -164,14 +166,22 @@ const OwmlLog: React.FunctionComponent = () => {
                   </IconButton>
                 </Tooltip>
               </LogCell>
-              <LogCell sx={{width: '150px'}}>
+              <LogCell sx={{
+                width: '150px', 
+                backgroundColor: 'transparent',
+              }}>
                 <ModNameSelect
                   value={selectedModName}
                   onChange={setSelectedModName}
                   logLines={logLines}
                 />
               </LogCell>
-              <LogCell sx={{width: '1px'}}>#</LogCell>
+              <LogCell sx={{
+                width: '1px',
+                backgroundColor: 'transparent',
+              }}>
+                #
+              </LogCell>
             </TableRow>
           </TableHead>
           <TableBody>
