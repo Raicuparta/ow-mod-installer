@@ -15,14 +15,6 @@ type Props = {
   tooltip?: string;
 };
 
-// const useStyles = makeStyles(({ spacing }) => ({
-//   slider: {
-//     margin: `0 ${spacing(2)}px ${spacing(2)}px ${spacing(4)}px`,
-//     width: `calc(100% - ${2 * spacing(2)}px)`,
-//     flex: 1,
-//   },
-// }));
-
 const SliderInput: FunctionComponent<Props> = ({
   value,
   onChange,
@@ -31,7 +23,6 @@ const SliderInput: FunctionComponent<Props> = ({
   tooltip = '',
 }) => {
   const [displayValue, setDisplayValue] = useState(value);
-  // const styles = useStyles();
   const handleChangeCommitted = useCallback(
     (_: unknown, changeValue: number | number[]) =>
       onChange(typeof changeValue === 'number' ? changeValue : changeValue[0]),
@@ -56,6 +47,12 @@ const SliderInput: FunctionComponent<Props> = ({
       <Typography>{label}</Typography>
       <Tooltip title={tooltip} placement="bottom">
         <Slider
+          sx={{
+            mr: 2,
+            mb: 2,
+            ml: 4,
+            flex: 1,
+          }}
           disabled={disabled}
           className="styles.slider"
           value={displayValue}
