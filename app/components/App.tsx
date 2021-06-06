@@ -25,6 +25,28 @@ const theme = createTheme({
       dark: '#7e1e1e',
     },
   },
+  components: {
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          minHeight: 0,
+        },
+        wrapper: {
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+          width: 100,
+        },
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          fontSize: '1em',
+        },
+      },
+    },
+  },
   // overrides: {
   //   MuiCssBaseline: {
   //     '@global': {

@@ -13,17 +13,6 @@ import ModsPage from '../Mods';
 import SettingsPage from '../Settings';
 import LogsPage from '../Logs';
 
-// const useTabStyles = makeStyles({
-//   root: {
-//     minHeight: 0,
-//   },
-//   wrapper: {
-//     flexDirection: 'row',
-//     justifyContent: 'space-evenly',
-//     alignItems: 'flex-start',
-//   },
-// });
-
 type Tab = {
   name: string;
   component: typeof ModsPage;
@@ -50,7 +39,6 @@ export const tabList: readonly Tab[] = [
 ] as const;
 
 const AppTabs = () => {
-  // const tabStyles = useTabStyles();
   const [selectedTab, setSelectedTab] = useRecoilState(selectedTabState);
 
   return (
@@ -60,7 +48,6 @@ const AppTabs = () => {
           key={tab.name}
           label={tab.name}
           value={index}
-          // classes="tabStyles"
           icon={<tab.icon color={tab.color} />}
           onClick={() => setSelectedTab(index)}
         />
