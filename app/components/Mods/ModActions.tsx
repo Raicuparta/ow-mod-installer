@@ -49,24 +49,7 @@ type ModActionHandler<Return> = (
 
 type ModActionHandlerSync<Return> = (mod: Mod) => Return;
 
-// const useStyles = makeStyles((theme) => ({
-//   circularProgress: {
-//     background: theme.palette.background.default,
-//     color: theme.palette.primary.main,
-//     borderRadius: '100%',
-//     borderWidth: 3,
-//     borderStyle: 'solid',
-//     borderColor: theme.palette.background.default,
-//     boxShadow: `0 0 5px 0 ${theme.palette.grey[300]}`,
-//   },
-//   highlightedButton: {
-//     color: theme.palette.secondary.light,
-//     boxShadow: `0 0 10px ${theme.palette.common.white}`,
-//   },
-// }));
-
 const ModActions: React.FunctionComponent<Props> = ({ mod }) => {
-  // const styles = useStyles();
   const setLocalMods = useSetRecoilState(localModList);
   const { owmlPath } = useRecoilValue(settingsState);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -185,7 +168,14 @@ const ModActions: React.FunctionComponent<Props> = ({ mod }) => {
             )}
             disabled={!isModDownloadable}
             size="small"
-            className={isInstallHighlighted ? 'styles.highlightedButton' : ''}
+            sx={
+              isInstallHighlighted
+                ? {
+                    color: 'secondary.light',
+                    boxShadow: `0 0 10px white`,
+                  }
+                : undefined
+            }
           >
             {isLoading && (
               <CircularProgress
@@ -194,7 +184,15 @@ const ModActions: React.FunctionComponent<Props> = ({ mod }) => {
                 color="primary"
                 size={24}
                 thickness={23}
-                className="styles.circularProgress"
+                sx={{
+                  background: 'background.default',
+                  color: 'primary.main',
+                  borderRadius: '100%',
+                  borderWidth: 3,
+                  borderStyle: 'solid',
+                  borderColor: 'background.default',
+                  boxShadow: '0 0 5px 0 grey.300',
+                }}
               />
             )}
             {!isLoading && (isModOutdated ? <UpdateIcon /> : <SaveIcon />)}

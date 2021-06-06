@@ -8,21 +8,17 @@ import FilterInput from '../FilterInput';
 import { modFilterState, settingsState } from '../../store';
 import { openDirectory } from '../../services';
 
-// const useStyles = makeStyles((theme) => ({
-//   toolBar: {
-//     justifyContent: 'space-between',
-//     minHeight: 0,
-//     padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
-//   },
-// }));
-
 const ModsToolbar: React.FunctionComponent = () => {
-  // const styles = useStyles();
   const [filter, setFilter] = useRecoilState(modFilterState);
   const { owmlPath } = useRecoilValue(settingsState);
   return (
     <Paper>
-      <Toolbar className="styles.toolBar">
+      <Toolbar
+        sx={{
+          justifyContent: 'space-between',
+          my: 2,
+        }}
+      >
         <FilterInput
           value={filter}
           onChange={setFilter}

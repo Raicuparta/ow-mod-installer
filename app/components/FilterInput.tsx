@@ -26,7 +26,7 @@ const FilterInput: React.FunctionComponent<Props> = ({
 
   return (
     <OutlinedInput
-      margin="dense"
+      size="small"
       onChange={handleChange}
       value={value}
       placeholder={label}
