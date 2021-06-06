@@ -1,7 +1,7 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
-import { green, grey, red, orange } from '@material-ui/core/colors';
+import { darkScrollbar, GlobalStyles } from '@material-ui/core';
+import { green, red, orange } from '@material-ui/core/colors';
 import { RecoilRoot } from 'recoil';
 
 import MainView from './MainView';
@@ -48,31 +48,6 @@ const theme = createTheme({
       },
     },
   },
-  // overrides: {
-  //   MuiCssBaseline: {
-  //     '@global': {
-  //       body: {
-  //         overflowY: 'hidden',
-  //       },
-  //       '*::-webkit-scrollbar': {
-  //         width: '1em',
-  //         cursor: 'pointer',
-  //       },
-  //       '*::-webkit-scrollbar-track': {
-  //         background: grey[800],
-  //         borderRadius: 0,
-  //       },
-  //       '*::-webkit-scrollbar-thumb': {
-  //         background: grey[700],
-  //         border: `2px solid ${grey[800]}`,
-  //         borderRadius: 0,
-  //         '&:hover': {
-  //           background: grey[600],
-  //         },
-  //       },
-  //     },
-  //   },
-  // },
 });
 
 const App = () => (
@@ -82,7 +57,7 @@ const App = () => (
     <RemoteModsSubscription />
     <LogsSubscription />
     <ThemeProvider theme={theme}>
-      <CssBaseline />
+      <GlobalStyles styles={{ body: darkScrollbar() }} />
       <MainView />
     </ThemeProvider>
   </RecoilRoot>

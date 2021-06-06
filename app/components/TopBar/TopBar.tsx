@@ -8,12 +8,7 @@ import LoadingSuspense from '../LoadingSuspense';
 const TopBar: React.FunctionComponent = () => (
   <Box
     sx={{
-      // TODO toolbar scroll
-      // overflowY: 'scroll',
-      '&::-webkit-scrollbar-track': {
-        background: 'grey.900',
-        borderRadius: 0,
-      },
+      overflowY: 'scroll',
     }}
     component="div"
   >
