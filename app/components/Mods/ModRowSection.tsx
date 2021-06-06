@@ -1,5 +1,11 @@
 import React from 'react';
-import { TableBody, Table, TableContainer, Paper } from '@material-ui/core';
+import {
+  TableBody,
+  Table,
+  TableContainer,
+  Paper,
+  Box,
+} from '@material-ui/core';
 
 import ModTableRow from './ModTableRow';
 import ModTableHead from './ModTableHead';
@@ -10,33 +16,30 @@ type Props = {
   highlighted?: boolean;
 };
 
-// const useStyles = makeStyles((theme) => ({
-//   required: {
-//     border: `solid 3px ${theme.palette.secondary.light}`,
-//   },
-//   wrapper: {
-//     flex: 0,
-//     marginTop: theme.spacing(3),
-//   },
-//   modsTable: {
-//     tableLayout: 'fixed',
-//   },
-// }));
-
 const ModRowSection: React.FunctionComponent<Props> = ({
   mods,
   title,
   highlighted,
 }) => {
-  // const styles = useStyles();
-
   return mods.length > 0 ? (
-    <div className="styles.wrapper">
+    <Box
+      sx={{
+        flex: 0,
+        marginTop: 3,
+      }}
+    >
       <TableContainer
         component={Paper}
-        className={highlighted ? 'styles.required' : ''}
+        sx={
+          highlighted
+            ? {
+                border: 3,
+                borderColor: 'secondary.light',
+              }
+            : undefined
+        }
       >
-        <Table className="styles.modsTable" size="small">
+        <Table sx={{ tableLayout: 'fixed' }} size="small">
           <ModTableHead title={title} />
           <TableBody>
             {mods.map((mod: Mod) => (
@@ -45,7 +48,7 @@ const ModRowSection: React.FunctionComponent<Props> = ({
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Box>
   ) : (
     <></>
   );
