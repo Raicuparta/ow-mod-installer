@@ -1,8 +1,9 @@
+import React from 'react';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
 import { green, grey, red, orange } from '@material-ui/core/colors';
 import { RecoilRoot } from 'recoil';
 
-import React from 'react';
 import MainView from './MainView';
 import {
   SettingsSubscription,
@@ -71,11 +72,6 @@ const theme = createTheme({
   //       },
   //     },
   //   },
-  //   MuiTooltip: {
-  //     tooltip: {
-  //       fontSize: '1em',
-  //     },
-  //   },
   // },
 });
 
@@ -86,6 +82,7 @@ const App = () => (
     <RemoteModsSubscription />
     <LogsSubscription />
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <MainView />
     </ThemeProvider>
   </RecoilRoot>

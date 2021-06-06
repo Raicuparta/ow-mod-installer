@@ -82,7 +82,7 @@ const PathInput: FunctionComponent<Props> = ({
         <TextField
           className="styles.textField"
           variant="outlined"
-          margin="dense"
+          size="small"
           fullWidth
           value={path}
           onChange={handleChange}
