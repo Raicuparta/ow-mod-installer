@@ -4,13 +4,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import {
-  ListItem,
-  Typography,
-  Slider,
-  makeStyles,
-  Tooltip,
-} from '@material-ui/core';
+import { ListItem, Typography, Slider, Tooltip } from '@material-ui/core';
 import { debugConsole } from '../../helpers/console-log';
 
 type Props = {
@@ -21,13 +15,13 @@ type Props = {
   tooltip?: string;
 };
 
-const useStyles = makeStyles(({ spacing }) => ({
-  slider: {
-    margin: `0 ${spacing(2)}px ${spacing(2)}px ${spacing(4)}px`,
-    width: `calc(100% - ${2 * spacing(2)}px)`,
-    flex: 1,
-  },
-}));
+// const useStyles = makeStyles(({ spacing }) => ({
+//   slider: {
+//     margin: `0 ${spacing(2)}px ${spacing(2)}px ${spacing(4)}px`,
+//     width: `calc(100% - ${2 * spacing(2)}px)`,
+//     flex: 1,
+//   },
+// }));
 
 const SliderInput: FunctionComponent<Props> = ({
   value,
@@ -37,7 +31,7 @@ const SliderInput: FunctionComponent<Props> = ({
   tooltip = '',
 }) => {
   const [displayValue, setDisplayValue] = useState(value);
-  const styles = useStyles();
+  // const styles = useStyles();
   const handleChangeCommitted = useCallback(
     (_: React.ChangeEvent<unknown>, changeValue: number | number[]) =>
       onChange(typeof changeValue === 'number' ? changeValue : changeValue[0]),
@@ -61,7 +55,9 @@ const SliderInput: FunctionComponent<Props> = ({
     <ListItem>
       <Typography>{label}</Typography>
       <Tooltip title={tooltip} placement="bottom">
-        <Slider
+        {/* TODO: material slider */}
+        <></>
+        {/* <Slider
           disabled={disabled}
           className={styles.slider}
           value={displayValue}
@@ -79,7 +75,7 @@ const SliderInput: FunctionComponent<Props> = ({
             { value: 150, label: '150' },
             { value: 200, label: '200' },
           ]}
-        />
+        /> */}
       </Tooltip>
     </ListItem>
   );

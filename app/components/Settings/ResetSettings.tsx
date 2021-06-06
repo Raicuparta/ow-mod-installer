@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Button, ListItem, makeStyles } from '@material-ui/core';
+import { Button, ListItem } from '@material-ui/core';
 import { SettingsBackupRestore as RestoreIcon } from '@material-ui/icons';
 import { useRecoilValue } from 'recoil';
 
@@ -8,14 +8,14 @@ import { useSettings } from '../../hooks';
 import { defaultAppSettings } from '../../services';
 import { defaultOwmlSettingsState } from '../../store';
 
-const useStyles = makeStyles({
-  root: {
-    justifyContent: 'flex-end',
-  },
-});
+// const useStyles = makeStyles({
+//   root: {
+//     justifyContent: 'flex-end',
+//   },
+// });
 
 const ResetSettings = () => {
-  const styles = useStyles();
+  // const styles = useStyles();
   const { setSettings, setOwmlSettings } = useSettings();
   const defaultOwmlSettings = useRecoilValue(defaultOwmlSettingsState);
 
@@ -25,7 +25,7 @@ const ResetSettings = () => {
   }, [setSettings, setOwmlSettings, defaultOwmlSettings]);
 
   return (
-    <ListItem className={styles.root}>
+    <ListItem className="styles.root">
       <Button
         variant="contained"
         onClick={handleResetClick}

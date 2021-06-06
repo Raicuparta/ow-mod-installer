@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Toolbar, makeStyles, Button } from '@material-ui/core';
+import { Paper, Toolbar, Button } from '@material-ui/core';
 import { Folder as FolderIcon } from '@material-ui/icons';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
@@ -8,21 +8,21 @@ import FilterInput from '../FilterInput';
 import { modFilterState, settingsState } from '../../store';
 import { openDirectory } from '../../services';
 
-const useStyles = makeStyles((theme) => ({
-  toolBar: {
-    justifyContent: 'space-between',
-    minHeight: 0,
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   toolBar: {
+//     justifyContent: 'space-between',
+//     minHeight: 0,
+//     padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
+//   },
+// }));
 
 const ModsToolbar: React.FunctionComponent = () => {
-  const styles = useStyles();
+  // const styles = useStyles();
   const [filter, setFilter] = useRecoilState(modFilterState);
   const { owmlPath } = useRecoilValue(settingsState);
   return (
     <Paper>
-      <Toolbar className={styles.toolBar}>
+      <Toolbar className="styles.toolBar">
         <FilterInput
           value={filter}
           onChange={setFilter}

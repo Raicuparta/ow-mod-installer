@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles, Select, MenuItem } from '@material-ui/core';
+import { Select, MenuItem } from '@material-ui/core';
 import { uniq } from 'lodash';
 
 import { logsText } from '../../helpers/static-text';
 import { LogLine } from '../../types';
 import { debugConsole } from '../../helpers/console-log';
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 150,
-    overflowX: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  },
-});
+// const useStyles = makeStyles({
+//   root: {
+//     maxWidth: 150,
+//     overflowX: 'hidden',
+//     textOverflow: 'ellipsis',
+//     whiteSpace: 'nowrap',
+//   },
+// });
 
 type Props = {
   value: string;
@@ -26,7 +26,7 @@ const ModNameSelect: React.FunctionComponent<Props> = ({
   onChange,
   logLines,
 }) => {
-  const styles = useStyles();
+  // const styles = useStyles();
   const [modNames, setModNames] = useState<string[]>([]);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const ModNameSelect: React.FunctionComponent<Props> = ({
     <Select
       variant="outlined"
       margin="dense"
-      className={styles.root}
+      className={"styles.root"}
       value={value}
       onChange={handleModNameChange}
       displayEmpty

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  makeStyles,
   Table,
   TableRow,
   TableHead,
@@ -12,7 +11,6 @@ import {
   Tooltip,
   Typography,
   Button,
-  withStyles,
 } from '@material-ui/core';
 import { ClearAll as ClearAllIcon } from '@material-ui/icons';
 
@@ -26,70 +24,72 @@ import { useRecoilState } from 'recoil';
 import { logLinesState } from '../../store';
 import { debugConsole } from '../../helpers/console-log';
 
-const useStyles = makeStyles(({ palette, spacing }) => ({
-  Error: {
-    color: palette.error.light,
-  },
-  Quit: {
-    color: palette.error.light,
-  },
-  Warning: {
-    color: palette.warning.light,
-  },
-  Success: {
-    color: palette.success.light,
-  },
-  Info: {
-    color: palette.info.light,
-  },
-  Fatal: {
-    color: palette.error.light,
-  },
-  Message: {},
-  wrapper: {
-    padding: spacing(3),
-  },
-  container: {
-    flex: 1,
-    overflowY: 'auto',
-    background: palette.grey[900],
-  },
-  logRow: {
-    border: 0,
-  },
-  header: {
-    backgroundColor: 'white',
-  },
-  modSelectHeader: {
-    width: 150,
-  },
-  nameHeader: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  modNameCell: {
-    overflowX: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  },
-  logCountHeader: {
-    width: 1,
-  },
-}));
+// const useStyles = makeStyles(({ palette, spacing }) => ({
+//   Error: {
+//     color: palette.error.light,
+//   },
+//   Quit: {
+//     color: palette.error.light,
+//   },
+//   Warning: {
+//     color: palette.warning.light,
+//   },
+//   Success: {
+//     color: palette.success.light,
+//   },
+//   Info: {
+//     color: palette.info.light,
+//   },
+//   Fatal: {
+//     color: palette.error.light,
+//   },
+//   Message: {},
+//   wrapper: {
+//     padding: spacing(3),
+//   },
+//   container: {
+//     flex: 1,
+//     overflowY: 'auto',
+//     background: palette.grey[900],
+//   },
+//   logRow: {
+//     border: 0,
+//   },
+//   header: {
+//     backgroundColor: 'white',
+//   },
+//   modSelectHeader: {
+//     width: 150,
+//   },
+//   nameHeader: {
+//     display: 'flex',
+//     justifyContent: 'space-between',
+//     alignItems: 'center',
+//   },
+//   modNameCell: {
+//     overflowX: 'hidden',
+//     textOverflow: 'ellipsis',
+//     whiteSpace: 'nowrap',
+//   },
+//   logCountHeader: {
+//     width: 1,
+//   },
+// }));
 
-const LogCell = withStyles((theme) => ({
-  body: {
-    borderBottom: `1px solid rgba(255, 255, 255, 0.05)`,
-  },
-  stickyHeader: {
-    paddingTop: theme.spacing(1),
-    background: theme.palette.background.paper,
-  },
-}))(TableCell);
+// const LogCell = withStyles((theme) => ({
+//   body: {
+//     borderBottom: `1px solid rgba(255, 255, 255, 0.05)`,
+//   },
+//   stickyHeader: {
+//     paddingTop: theme.spacing(1),
+//     background: theme.palette.background.paper,
+//   },
+// }))(TableCell);
+
+const LogCell = TableCell;
 
 const OwmlLog: React.FunctionComponent = () => {
-  const styles = useStyles();
+  // const styles = useStyles();
   const [logLines, setLogLines] = useRecoilState(logLinesState);
   const {
     settings: { logLinesLimit },
@@ -172,13 +172,13 @@ const OwmlLog: React.FunctionComponent = () => {
     <PageContainer maxWidth={false}>
       <TableContainer
         component={Paper}
-        className={styles.container}
+        className={"styles.container"}
         ref={containerRef}
       >
         <Table size="small" stickyHeader>
           <TableHead>
             <TableRow>
-              <LogCell className={styles.nameHeader}>
+              <LogCell className={"styles.nameHeader"}>
                 <FilterInput
                   onChange={setFilter}
                   value={filter}
@@ -198,14 +198,14 @@ const OwmlLog: React.FunctionComponent = () => {
                   </IconButton>
                 </Tooltip>
               </LogCell>
-              <LogCell className={styles.modSelectHeader}>
+              <LogCell className={"styles.modSelectHeader"}>
                 <ModNameSelect
                   value={selectedModName}
                   onChange={setSelectedModName}
                   logLines={logLines}
                 />
               </LogCell>
-              <LogCell className={styles.logCountHeader}>#</LogCell>
+              <LogCell className={"styles.logCountHeader"}>#</LogCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -225,8 +225,8 @@ const OwmlLog: React.FunctionComponent = () => {
             {paginatedLines.map((line: LogLine) => (
               <React.Fragment key={line.id}>
                 <TableRow>
-                  <LogCell className={styles[line.type]}>{line.text}</LogCell>
-                  <LogCell className={styles.modNameCell}>
+                  <LogCell className={"styles[line.type]"}>{line.text}</LogCell>
+                  <LogCell className={"styles.modNameCell"}>
                     {line.modName}
                   </LogCell>
                   <LogCell>{line.count > 1 ? line.count : ''}</LogCell>

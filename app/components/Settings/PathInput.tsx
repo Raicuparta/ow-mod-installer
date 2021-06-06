@@ -8,7 +8,6 @@ import { remote } from 'electron';
 import {
   ListItem,
   TextField,
-  makeStyles,
   Button,
   Typography,
   Tooltip,
@@ -25,13 +24,13 @@ type Props = {
   tooltip?: string;
 };
 
-const useStyles = makeStyles(({ spacing }) => ({
-  textField: {
-    margin: `${spacing(1)}px ${spacing(2)}px`,
-    width: `calc(100% - ${2 * spacing(2)}px)`,
-    flex: 1,
-  },
-}));
+// const useStyles = makeStyles(({ spacing }) => ({
+//   textField: {
+//     margin: `${spacing(1)}px ${spacing(2)}px`,
+//     width: `calc(100% - ${2 * spacing(2)}px)`,
+//     flex: 1,
+//   },
+// }));
 
 const FILE_NAME = 'OuterWilds.exe';
 
@@ -42,7 +41,7 @@ const PathInput: FunctionComponent<Props> = ({
   disabled,
   tooltip = '',
 }) => {
-  const styles = useStyles();
+  // const styles = useStyles();
   const [path, setPath] = useState('');
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -81,7 +80,7 @@ const PathInput: FunctionComponent<Props> = ({
       <Typography>{label}</Typography>
       <Tooltip title={tooltip} placement="bottom">
         <TextField
-          className={styles.textField}
+          className="styles.textField"
           variant="outlined"
           margin="dense"
           fullWidth
