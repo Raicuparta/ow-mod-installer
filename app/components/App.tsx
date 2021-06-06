@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { green, grey, red } from '@material-ui/core/colors';
+import { green, grey, red, orange } from '@material-ui/core/colors';
 import { RecoilRoot } from 'recoil';
 
 import React from 'react';
@@ -12,21 +12,19 @@ import {
 } from '../subscriptions';
 
 const theme = createTheme({
-  // palette: {
-  //   type: 'dark',
-  //   primary: {
-  //     main: green[700],
-  //   },
-  //   secondary: {
-  //     main: '#bb7900',
-  //     dark: '#885b18',
-  //     light: '#ffd53c',
-  //   },
-  //   error: {
-  //     main: red[500],
-  //     dark: '#7e1e1e',
-  //   },
-  // },
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: green[700],
+    },
+    secondary: {
+      main: orange[700],
+    },
+    error: {
+      main: red[500],
+      dark: '#7e1e1e',
+    },
+  },
   // overrides: {
   //   MuiCssBaseline: {
   //     '@global': {
