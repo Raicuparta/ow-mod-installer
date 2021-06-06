@@ -34,20 +34,9 @@ const logColorMap = {
   Message: undefined,
 } as const;
 
-// const LogCell = withStyles((theme) => ({
-//   body: {
-//     borderBottom: `1px solid rgba(255, 255, 255, 0.05)`,
-//   },
-//   stickyHeader: {
-//     paddingTop: theme.spacing(1),
-//     background: theme.palette.background.paper,
-//   },
-// }))(TableCell);
-
 const LogCell = TableCell;
 
 const OwmlLog: React.FunctionComponent = () => {
-  // const styles = useStyles();
   const [logLines, setLogLines] = useRecoilState(logLinesState);
   const {
     settings: { logLinesLimit },
