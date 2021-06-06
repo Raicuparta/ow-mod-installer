@@ -11,68 +11,16 @@ type Props = {
   mod: Mod;
 };
 
-// const useStyles = makeStyles((theme) => ({
-//   brokenRow: {
-//     '&:nth-of-type(odd)': {
-//       backgroundColor: theme.palette.error.dark,
-//     },
-//     backgroundColor: theme.palette.error.dark,
-//   },
-//   missingDependencyRow: {
-//     '&:nth-of-type(odd)': {
-//       backgroundColor: theme.palette.secondary.dark,
-//     },
-//     backgroundColor: theme.palette.secondary.dark,
-//   },
-//   modAuthor: {
-//     color: theme.palette.text.disabled,
-//     display: 'inline-block',
-//   },
-//   tableCell: {
-//     paddingTop: theme.spacing(1),
-//     paddingBottom: theme.spacing(1),
-//     borderBottom: 0,
-//   },
-//   tableRow: {
-//     '&:nth-of-type(odd)': {
-//       opacity: '#4b4b4b',
-//     },
-//   },
-//   versionChip: {
-//     width: '100%',
-//     padding: 0,
-//     paddingLeft: 0,
-//     paddingRight: 0,
-//     '& span': {
-//       paddingLeft: 0,
-//       paddingRight: 0,
-//     },
-//   },
-//   modText: {
-//     display: 'block',
-//     marginTop: -5,
-//     marginBottom: -theme.spacing(0),
-//     wordWrap: 'break-word',
-//   },
-//   outdatedChip: {
-//     ...theme.typography.caption,
-//     textAlign: 'center',
-//     width: '100%',
-//     lineHeight: 0,
-//     paddingTop: theme.spacing(4),
-//     paddingBottom: theme.spacing(2),
-//     marginTop: -theme.spacing(4),
-//     borderRadius: 16,
-//     background: theme.palette.secondary.main,
-//     fontWeight: theme.typography.fontWeightBold,
-//   },
-// }));
+const tableCellStyle = {
+  py: 1,
+  borderBottom: 0,
+};
 
 const ModTableRow: React.FunctionComponent<Props> = ({ mod }) => {
-  // const styles = useStyles();
   const missingDependencyNames = useRecoilValue(missingDependencyIdsState(mod));
   const isModBroken = isBroken(mod);
   const isModOutdated = isOutdated(mod);
+  const isModMissingDependencies = missingDependencyNames.length > 0;
 
   const getVersionColor = () => {
     if (isModBroken) {
@@ -97,21 +45,11 @@ const ModTableRow: React.FunctionComponent<Props> = ({ mod }) => {
     return modsText.versionNotAvailable;
   };
 
-  const getClassName = () => {
-    let className = 'styles.tableRow';
-    if (isModBroken) {
-      className += ` ${'styles.brokenRow'}`;
-    } else if (missingDependencyNames.length > 0) {
-      className += ` ${'styles.missingDependencyRow'}`;
-    }
-    return className;
-  };
-
   const getModText = () => {
     if (isModBroken) {
       return modsText.modLoadError(mod.errors);
     }
-    if (missingDependencyNames.length > 0) {
+    if (isModMissingDependencies) {
       return modsText.missingDependencyWarning(
         missingDependencyNames.join(', ')
       );
@@ -119,41 +57,99 @@ const ModTableRow: React.FunctionComponent<Props> = ({ mod }) => {
     return mod.description;
   };
 
+  // TODO: repeated sx cleanup
+
   return (
-    <TableRow className={getClassName()} key={mod.uniqueName}>
-      <TableCell className="styles.tableCell">
+    <TableRow
+      sx={{
+        ...(!isModBroken && !isModMissingDependencies
+          ? {
+              '&:nth-of-type(odd)': {
+                backgroundColor: '#252525',
+              },
+            }
+          : null),
+        ...(isModBroken
+          ? {
+              backgroundColor: 'error.dark',
+            }
+          : null),
+        ...(isModMissingDependencies
+          ? {
+              backgroundColor: 'secondary.dark',
+            }
+          : null),
+      }}
+      key={mod.uniqueName}
+    >
+      <TableCell sx={tableCellStyle}>
         <Typography variant="subtitle1">
           <Box display="inline-block" mr={2}>
             {mod.name}
           </Box>
-          <Typography className="styles.modAuthor" variant="caption">
+          <Typography
+            sx={{
+              color: 'text.disabled',
+              display: 'inline-block',
+            }}
+            variant="caption"
+          >
             {' by '}
             {mod.author}
           </Typography>
           <Typography variant="caption" />
         </Typography>
         <Typography
-          className="styles.modText"
+          sx={{
+            display: 'block',
+            mt: -0.5,
+            mb: 0,
+            wordWrap: 'break-word',
+          }}
           color="textSecondary"
           variant="caption"
         >
           {getModText()}
         </Typography>
       </TableCell>
-      <TableCell className="styles.tableCell" align="right">
+      <TableCell sx={tableCellStyle} align="right">
         {mod.downloadCount || '-'}
       </TableCell>
-      <TableCell className="styles.tableCell">
+      <TableCell sx={tableCellStyle}>
         <Chip
           color={getVersionColor()}
           label={getVersion()}
-          className="styles.versionChip"
+          sx={{
+            width: '100%',
+            padding: 0,
+            paddingLeft: 0,
+            paddingRight: 0,
+            '& span': {
+              paddingLeft: 0,
+              paddingRight: 0,
+            },
+          }}
         />
         {!isModBroken && isModOutdated && (
-          <div className="styles.outdatedChip">{modsText.outdated}</div>
+          <Box
+            sx={{
+              textAlign: 'center',
+              width: '100%',
+              lineHeight: 0,
+              paddingTop: 4,
+              paddingBottom: 2,
+              marginTop: -4,
+              borderRadius: 4,
+              backgroundColor: 'secondary.main',
+              fontWeight: 'fontWeightBold',
+              fontSize: 12,
+            }}
+          >
+            {modsText.outdated}
+          </Box>
         )}
       </TableCell>
-      <TableCell className="styles.tableCell">
+      <TableCell sx={tableCellStyle}>
         <ModActions mod={mod} />
       </TableCell>
     </TableRow>
