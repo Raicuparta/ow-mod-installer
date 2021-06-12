@@ -11,7 +11,8 @@ import {
 import { green, grey, red } from '@material-ui/core/colors';
 import { RecoilRoot } from 'recoil';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { remote } from 'electron';
 import MainView from './MainView';
 import {
   SettingsSubscription,
@@ -71,16 +72,47 @@ const theme = createMuiStrictTheme({
   },
 });
 
-const App = () => (
-  <RecoilRoot>
-    <SettingsSubscription />
-    <LocalModsSubscription />
-    <RemoteModsSubscription />
-    <LogsSubscription />
-    <ThemeProvider theme={theme}>
-      <MainView />
-    </ThemeProvider>
-  </RecoilRoot>
-);
+const PROTOCOL_SCHEME = 'outerwildsmod';
+const PROTOCOL_PREFIX = `${PROTOCOL_SCHEME}://`;
+
+const App = () => {
+  const [repo, setRepo] = useState<string>();
+  useEffect(() => {
+    remote.app.on('second-instance', (e, argv) => {
+      if (process.platform !== 'darwin') {
+        // Find the arg that is our custom protocol url and store it
+        const protocolArg = argv.find((arg) => arg.startsWith(PROTOCOL_PREFIX));
+
+        if (!protocolArg) {
+          console.error(`No protocol arg for ${PROTOCOL_PREFIX}`);
+          return;
+        }
+        setRepo(protocolArg.slice(PROTOCOL_PREFIX.length));
+      }
+
+      const mainWindow = remote.getCurrentWindow();
+
+      if (mainWindow) {
+        if (mainWindow.isMinimized()) mainWindow.restore();
+        mainWindow.focus();
+      }
+    });
+  }, []);
+  return (
+    <RecoilRoot>
+      <SettingsSubscription />
+      <LocalModsSubscription />
+      <RemoteModsSubscription />
+      <LogsSubscription />
+      <ThemeProvider theme={theme}>
+        {/* <MainView /> */}
+        <p>
+          What is the repo?
+          {repo}
+        </p>
+      </ThemeProvider>
+    </RecoilRoot>
+  );
+};
 
 export default App;

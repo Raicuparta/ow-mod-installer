@@ -70,7 +70,12 @@
       "owner": "Raicuparta",
       "repo": "ow-mod-manager",
       "private": false
-    }
+    },
+    "protocols": [{
+      "name": "outerwildsmod",
+      "role": "Viewer",
+      "schemes": ["outerwildsmod"]
+    }]
   },
   "repository": {
     "type": "git",

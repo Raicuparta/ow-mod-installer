@@ -7,9 +7,32 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import { updateText } from './helpers/static-text';
 
+if (!app.requestSingleInstanceLock()) {
+  app.quit();
+}
+
 app.commandLine.appendSwitch('disable-http-cache');
 
+const PROTOCOL_SCHEME = 'outerwildsmod';
+const PROTOCOL_PREFIX = `${PROTOCOL_SCHEME}://`;
+
 const isProduction = process.env.NODE_ENV === 'production';
+
+if (!isProduction && process.platform === 'win32') {
+  // Set the path of electron.exe and your app.
+  // These two additional parameters are only available on windows.
+  // Setting this is required to get this working in dev mode.
+  app.setAsDefaultProtocolClient(PROTOCOL_SCHEME, process.execPath, [
+    '-r',
+    path.resolve(process.argv[2]),
+    path.resolve(process.argv[3]),
+  ]);
+
+  console.log('process.argv[3]', process.argv[3]);
+  // app.setAsDefaultProtocolClient(PROTOCOL);
+} else {
+  app.setAsDefaultProtocolClient(PROTOCOL_SCHEME);
+}
 
 const checkForUpdates = () => {
   log.transports.file.level = 'debug';
